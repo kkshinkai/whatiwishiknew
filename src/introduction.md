@@ -21,3 +21,7 @@
 如果你认为你的疑惑是初学者的共性问题, 我的解释没有击中要害, 或者存在事实错误, 可以在 [GitHub Issues](https://github.com/kkshinkai/whatiwishiknew/issues) 中提出, 或向 <i@shinkai.moe> 发送邮件.
 
 请注意, "What **I** Wish **I** Knew" 是一件相对主观的事, 即使我希望做到初学者友好, 但这些内容同样会假设读者拥有某些前置知识. 我并不打算尽可能多地收录细节问题, 也不会为了追求完备性而无休止地扩充内容. 请不要提出 PR, 我暂时没有计划接受对内容的直接修改.
+
+## 许可
+
+本作品采用署名-非商业性使用-禁止演绎 4.0 协议 ([CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)) 授权.

@@ -70,7 +70,7 @@ const schema = new Schema({
 
     这种方式的缺点在于, 当链接和其他样式同时出现时, 由于链接具有较低优先级, 被包裹于其他样式内部, 因此会被截断成多节, 对光标悬停效果非常不友好. 例如 "<a style="color: blue; text-decoration: underline">abc</a> <span style="border: 2px solid red"><a style="color: blue; text-decoration: underline">def</a></span> <a style="color: blue; text-decoration: underline">ghi</a>", 实际上是三个链接.
 
-    尽管有这样的缺陷, 但很多富文本编辑器 (如 Notion) 都采取了这种方案. 因为下述的方案缺陷更严重, 且大多数用户也没有在链接内嵌套代码等样式的需求.
+    尽管有这样的缺陷, 但很多富文本编辑器 (如 Notion) 都采取了这种方案. 因为下述的方案缺陷更严重, 而且大多数用户也没有在链接内嵌套代码等样式的需求.
 
 2. 将链接置于较前的位置.
 

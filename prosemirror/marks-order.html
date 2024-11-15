@@ -201,14 +201,14 @@
 <ol>
 <li>
 <p>将链接置于较后的位置, 只前于简单的文字样式.</p>
-<p><span style="border: 2px solid red">abc <a style="color: blue; text-decoration: underline">def</a> ghi</span></p>
-<p>这种方式的缺点在于, 当链接和其他样式同时出现时, 由于链接具有较低优先级, 被包裹于其他样式内部, 因此会被截断成多节, 对光标悬停效果非常不友好. 例如 “<a style="color: blue; text-decoration: underline">abc</a> <span style="border: 2px solid red"><a style="color: blue; text-decoration: underline">def</a></span> <a style="color: blue; text-decoration: underline">ghi</a>”, 实际上是三个链接.</p>
+<p><span style="border: 2px solid red">(abc <a style="color: blue" src="https://www.example.com">(def)</a> ghi)</span></p>
+<p>这种方式的缺点在于, 当链接和其他样式同时出现时, 由于链接具有较低优先级, 被包裹于其他样式内部, 因此会被截断成多节, 对光标悬停效果非常不友好. 例如 “<a style="color: blue" src="https://www.example.com">(abc )</a><span style="border: 2px solid red"><a style="color: blue" src="https://www.example.com">(def)</a></span><a style="color: blue" src="https://www.example.com">( ghi)</a>” 是三个链接, 请将光标悬停在链接上试试效果.</p>
 <p>尽管有这样的缺陷, 但很多富文本编辑器 (如 Notion) 都采取了这种方案. 因为下述的方案缺陷更严重, 而且大多数用户也没有在链接内嵌套代码等样式的需求.</p>
 </li>
 <li>
 <p>将链接置于较前的位置.</p>
-<p><a style="color: blue; text-decoration: underline">abc <span style="border: 2px solid red">def</span> ghi</a></p>
-<p>这种方案的缺点在于, 由于链接具有较高的优先级, 它可能经常会包裹其他样式. 如果其他样式有边框或圆角, 会被链接包裹而断成多节, 使得视觉效果不佳, 例如 “<span style="border: 2px solid red">abc </span><a style="color: blue; text-decoration: underline"><span style="border: 2px solid red">def</span></a><span style="border: 2px solid red"> ghi</span>”.</p>
+<p><a style="color: blue" src="https://www.example.com">(abc <span style="border: 2px solid red">(def)</span> ghi)</a></p>
+<p>这种方案的缺点在于, 由于链接具有较高的优先级, 它可能经常会包裹其他样式. 如果其他样式有边框或圆角, 会被链接包裹而断成多节, 使得视觉效果不佳, 例如 “<span style="border: 2px solid red">(abc )</span><a style="color: blue" src="https://www.example.com"><span style="border: 2px solid red">(def)</span></a><span style="border: 2px solid red">( ghi)</span>”.</p>
 </li>
 </ol>
 <p>这两种方案都有各自的合理性, 你应该根据实际需求进行选择.</p>

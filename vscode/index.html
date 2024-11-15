@@ -154,9 +154,9 @@
                     <main>
                         <h1 id="当我阅读-vs-code-源码时-我希望我知道-"><a class="header" href="#当我阅读-vs-code-源码时-我希望我知道-">当我阅读 VS Code 源码时, 我希望我知道 …</a></h1>
 <h2 id="阅读-vs-code-源码"><a class="header" href="#阅读-vs-code-源码">阅读 VS Code 源码</a></h2>
-<p><code>IDisposable</code> 是 VS Code 中非常重要的接口, 是 <a href="https://en.wikipedia.org/wiki/Dispose_pattern">Dispose Pattern</a> 的实现, 用于资源管理. 它内容简单, 而且相对独立, 因此很适合作为阅读 VS Code 源码的起点.</p>
+<p><strong>IDisposable 是我推荐的阅读起点</strong>. <code>IDisposable</code> 是 <a href="https://en.wikipedia.org/wiki/Dispose_pattern">Dispose Pattern</a> 的接口, 用于资源管理. 这个接口只有一个 <code>dispose()</code> 方法, 用于实现资源的销毁逻辑. 它内容简单, 而且相对独立, 同时也是整个 VS Code 代码库中重要的基础设施, 很适合作为阅读 VS Code 源码的入口.</p>
 <p><a href="./dispose-pattern.html">VS Code 源码分析: 使用 Dispose Pattern 管理资源</a></p>
-<p>Event 和 Emitter 是 VS Code 中另一个重要的模块, 用于实现事件驱动的编程模型, 在 VS Code 中被广泛使用.</p>
+<p><strong>Event 和 Emitter 是 VS Code 中一对重要的基础设施</strong>, 用于实现事件驱动的编程模型, 它们在 VS Code 中被广泛使用. 如果你熟悉 <a href="https://doc.qt.io/qt-6/signalsandslots.html">Qt 的信号槽机制</a>, <a href="https://rxjs.dev/guide/observable">RxJS 的 <code>Observable</code></a>, <a href="https://nodejs.org/en/learn/asynchronous-work/the-nodejs-event-emitter">Node.js 的 <code>EventEmitter</code></a>, 或者 DOM 的事件监听 (<code>addEventListener</code>, <code>removeEventListener</code>), 你应该会很容易理解它们.</p>
 <p>TODO: VS Code 源码分析: Event 和 Emitter</p>
 <p>VS Code 使用依赖注入来管理组件.</p>
 <p>TODO: VS Code 源码分析: 依赖注入</p>

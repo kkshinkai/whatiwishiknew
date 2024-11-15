@@ -225,22 +225,22 @@
 <ol>
 <li>
 <p>将链接置于较后的位置, 只前于简单的文字样式.</p>
-<p><span style="border: 2px solid red">abc <a style="color: blue; text-decoration: underline">def</a> ghi</span></p>
-<p>这种方式的缺点在于, 当链接和其他样式同时出现时, 由于链接具有较低优先级, 被包裹于其他样式内部, 因此会被截断成多节, 对光标悬停效果非常不友好. 例如 “<a style="color: blue; text-decoration: underline">abc</a> <span style="border: 2px solid red"><a style="color: blue; text-decoration: underline">def</a></span> <a style="color: blue; text-decoration: underline">ghi</a>”, 实际上是三个链接.</p>
+<p><span style="border: 2px solid red">(abc <a style="color: blue" src="https://www.example.com">(def)</a> ghi)</span></p>
+<p>这种方式的缺点在于, 当链接和其他样式同时出现时, 由于链接具有较低优先级, 被包裹于其他样式内部, 因此会被截断成多节, 对光标悬停效果非常不友好. 例如 “<a style="color: blue" src="https://www.example.com">(abc )</a><span style="border: 2px solid red"><a style="color: blue" src="https://www.example.com">(def)</a></span><a style="color: blue" src="https://www.example.com">( ghi)</a>” 是三个链接, 请将光标悬停在链接上试试效果.</p>
 <p>尽管有这样的缺陷, 但很多富文本编辑器 (如 Notion) 都采取了这种方案. 因为下述的方案缺陷更严重, 而且大多数用户也没有在链接内嵌套代码等样式的需求.</p>
 </li>
 <li>
 <p>将链接置于较前的位置.</p>
-<p><a style="color: blue; text-decoration: underline">abc <span style="border: 2px solid red">def</span> ghi</a></p>
-<p>这种方案的缺点在于, 由于链接具有较高的优先级, 它可能经常会包裹其他样式. 如果其他样式有边框或圆角, 会被链接包裹而断成多节, 使得视觉效果不佳, 例如 “<span style="border: 2px solid red">abc </span><a style="color: blue; text-decoration: underline"><span style="border: 2px solid red">def</span></a><span style="border: 2px solid red"> ghi</span>”.</p>
+<p><a style="color: blue" src="https://www.example.com">(abc <span style="border: 2px solid red">(def)</span> ghi)</a></p>
+<p>这种方案的缺点在于, 由于链接具有较高的优先级, 它可能经常会包裹其他样式. 如果其他样式有边框或圆角, 会被链接包裹而断成多节, 使得视觉效果不佳, 例如 “<span style="border: 2px solid red">(abc )</span><a style="color: blue" src="https://www.example.com"><span style="border: 2px solid red">(def)</span></a><span style="border: 2px solid red">( ghi)</span>”.</p>
 </li>
 </ol>
 <p>这两种方案都有各自的合理性, 你应该根据实际需求进行选择.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="当我阅读-vs-code-源码时-我希望我知道-"><a class="header" href="#当我阅读-vs-code-源码时-我希望我知道-">当我阅读 VS Code 源码时, 我希望我知道 …</a></h1>
 <h2 id="阅读-vs-code-源码"><a class="header" href="#阅读-vs-code-源码">阅读 VS Code 源码</a></h2>
-<p><code>IDisposable</code> 是 VS Code 中非常重要的接口, 是 <a href="https://en.wikipedia.org/wiki/Dispose_pattern">Dispose Pattern</a> 的实现, 用于资源管理. 它内容简单, 而且相对独立, 因此很适合作为阅读 VS Code 源码的起点.</p>
+<p><strong>IDisposable 是我推荐的阅读起点</strong>. <code>IDisposable</code> 是 <a href="https://en.wikipedia.org/wiki/Dispose_pattern">Dispose Pattern</a> 的接口, 用于资源管理. 这个接口只有一个 <code>dispose()</code> 方法, 用于实现资源的销毁逻辑. 它内容简单, 而且相对独立, 同时也是整个 VS Code 代码库中重要的基础设施, 很适合作为阅读 VS Code 源码的入口.</p>
 <p><a href="vscode/./dispose-pattern.html">VS Code 源码分析: 使用 Dispose Pattern 管理资源</a></p>
-<p>Event 和 Emitter 是 VS Code 中另一个重要的模块, 用于实现事件驱动的编程模型, 在 VS Code 中被广泛使用.</p>
+<p><strong>Event 和 Emitter 是 VS Code 中一对重要的基础设施</strong>, 用于实现事件驱动的编程模型, 它们在 VS Code 中被广泛使用. 如果你熟悉 <a href="https://doc.qt.io/qt-6/signalsandslots.html">Qt 的信号槽机制</a>, <a href="https://rxjs.dev/guide/observable">RxJS 的 <code>Observable</code></a>, <a href="https://nodejs.org/en/learn/asynchronous-work/the-nodejs-event-emitter">Node.js 的 <code>EventEmitter</code></a>, 或者 DOM 的事件监听 (<code>addEventListener</code>, <code>removeEventListener</code>), 你应该会很容易理解它们.</p>
 <p>TODO: VS Code 源码分析: Event 和 Emitter</p>
 <p>VS Code 使用依赖注入来管理组件.</p>
 <p>TODO: VS Code 源码分析: 依赖注入</p>
@@ -250,6 +250,45 @@
 <p><a href="https://en.wikipedia.org/wiki/Dispose_pattern">Dispose Pattern</a> 是一种用于资源管理的设计模式, 让对象持有资源, 并通过调用方法 (这里是 <code>dispose()</code>) 来释放资源. 代码位于 <code>src/vs/base/common/lifecycle.ts</code> 中.</p>
 <pre><code class="language-ts">export interface IDisposable {
   dispose(): void;
+}
+</code></pre>
+<h2 id="其他"><a class="header" href="#其他">其他</a></h2>
+<h3 id="异步地初始化和销毁资源"><a class="header" href="#异步地初始化和销毁资源">异步地初始化和销毁资源</a></h3>
+<p>JavaScript 不支持异步的初始化函数 (constructor). 你可能会发现, 有些资源的可用时间晚于初始化, <code>constructor()</code> 已经被调用, 但对象的功能还几乎处于不可用状态. 一个惯用法是, 让对象暴露一个名为 <code>ready</code> 的 Promise, 允许资源的使用者 (可能是类内的其他方法, 或者外部的函数) 掌握资源初始化完成的时机.</p>
+<p><code>dispose()</code> 也不是异步的, 但这一点往往并不重要. 即使资源释放过程是异步的, 我们通常也不需要等待资源释放完成.</p>
+<p>下面的类给出了一个完整的样板示例:</p>
+<pre><code class="language-ts">export class AsyncResourceService {
+  private ready!: Promise&lt;MyResource&gt;;
+  private resource: MyResource | undefined = undefined;
+
+  constructor() {
+    this.initialize();
+  }
+
+  initialize(): void {
+    this.ready = this.doInitialize();
+  }
+
+  private async doInitialize(): Promise&lt;MyResource&gt; {
+    this.resource = await asyncCreateResource();
+
+    return this.resource;
+  }
+
+  async getSomething(): Promise&lt;Something&gt; {
+    const resource = await this.ready;
+
+    return resource.doSomething();
+  }
+
+  dispose(): void {
+    (async () =&gt; {
+      if (this.resource) {
+        await asyncDisposeResource(this.resource);
+        this.resource = undefined;
+      }
+    })();
+  }
 }
 </code></pre>
 

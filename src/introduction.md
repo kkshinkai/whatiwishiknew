@@ -1,8 +1,8 @@
-# What I Wish I Knew &middot; 我希望我当时知道
+# What I Wish I Knew &middot; 我希望当时我知道
 
 这本小册是受 [What I Wish I Knew When Learning Haskell](https://smunix.github.io/dev.stephendiehl.com/hask/index.html) 启发而诞生的, 这本书在我入门 Haskell 时给了我很大的帮助.
 
-我觉得 **"What I Wish I Knew (我希望我当时知道)"** 是一个很有意义的切入点, 和传统的通用入门教程不同, 这样的文章致力于:
+我觉得 **"What I Wish I Knew (我希望当时我知道)"** 是一个很有意义的切入点, 和传统的通用入门教程不同, 这样的文章致力于:
 
 - 降低**知识的诅咒** (Curse of Knowledge) 造成的交流障碍.
 
@@ -16,7 +16,7 @@
 
 ## 如何贡献
 
-不幸的是, 当我在开始写这本小册的时候, **我在一些领域中已经不是初学者了** &mdash; 我被知识的诅咒所困扰, 也许已经忘记了一些我曾经的困惑, 或者耻于提起自己曾产生过的愚蠢的问题; 同时**我也并非专家** &mdash; 我无法给出最权威的解释, 甚至不能完全保证内容的准确性 (尽管我会尽我所能).
+不幸的是, 当我在开始写这本小册的时候, **我在一些领域中已经不是初学者了** -- 我被知识的诅咒所困扰, 也许已经忘记了一些我曾经的困惑, 或者耻于提起自己曾产生过的愚蠢的问题; 同时**我也并非专家** -- 我无法给出最权威的解释, 甚至不能完全保证内容的准确性 (尽管我会尽我所能).
 
 如果你认为你的疑惑是初学者的共性问题, 我的解释没有击中要害, 或者存在事实错误, 可以在 [GitHub Issues](https://github.com/kkshinkai/whatiwishiknew/issues) 中提出, 或向 <i@shinkai.moe> 发送邮件.
 

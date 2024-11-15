@@ -1,0 +1,6 @@
+[book]
+authors = ["Kk Shinkai"]
+language = "zh"
+multilingual = false
+src = "src"
+title = "What I Wish I Knew"

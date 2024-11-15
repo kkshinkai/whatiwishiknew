@@ -178,7 +178,7 @@
 <div style="break-before: page; page-break-before: always;"></div><h1 id="当我学习-prosemirror-时-我希望我知道-"><a class="header" href="#当我学习-prosemirror-时-我希望我知道-">当我学习 ProseMirror 时, 我希望我知道 …</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="mark-的顺序"><a class="header" href="#mark-的顺序">Mark 的顺序</a></h1>
 <p>在 Schema 中定义 Mark (行内样式) 时, 你可以决定 Mark 的顺序. 这个顺序在一些特定场景下非常重要, 但很容易被初学者忽略.</p>
-<pre><code class="language-js">const textSchema = new Schema({
+<pre><code class="language-js">const schema = new Schema({
   nodes: { ... },
   marks: {
     highlight: { ... }, // 0
@@ -236,6 +236,22 @@
 </li>
 </ol>
 <p>这两种方案都有各自的合理性, 你应该根据实际需求进行选择.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="当我阅读-vs-code-源码时-我希望我知道-"><a class="header" href="#当我阅读-vs-code-源码时-我希望我知道-">当我阅读 VS Code 源码时, 我希望我知道 …</a></h1>
+<h2 id="阅读-vs-code-源码"><a class="header" href="#阅读-vs-code-源码">阅读 VS Code 源码</a></h2>
+<p><code>IDisposable</code> 是 VS Code 中非常重要的接口, 是 <a href="https://en.wikipedia.org/wiki/Dispose_pattern">Dispose Pattern</a> 的实现, 用于资源管理. 它内容简单, 而且相对独立, 因此很适合作为阅读 VS Code 源码的起点.</p>
+<p><a href="vscode/./dispose-pattern.html">VS Code 源码分析: 使用 Dispose Pattern 管理资源</a></p>
+<p>Event 和 Emitter 是 VS Code 中另一个重要的模块, 用于实现事件驱动的编程模型, 在 VS Code 中被广泛使用.</p>
+<p>TODO: VS Code 源码分析: Event 和 Emitter</p>
+<p>VS Code 使用依赖注入来管理组件.</p>
+<p>TODO: VS Code 源码分析: 依赖注入</p>
+<h2 id="阅读-monaco-源码"><a class="header" href="#阅读-monaco-源码">阅读 Monaco 源码</a></h2>
+<p>TODO</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="使用-dispose-pattern-管理资源"><a class="header" href="#使用-dispose-pattern-管理资源">使用 Dispose Pattern 管理资源</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Dispose_pattern">Dispose Pattern</a> 是一种用于资源管理的设计模式, 让对象持有资源, 并通过调用方法 (这里是 <code>dispose()</code>) 来释放资源. 代码位于 <code>src/vs/base/common/lifecycle.ts</code> 中.</p>
+<pre><code class="language-ts">export interface IDisposable {
+  dispose(): void;
+}
+</code></pre>
 
                     </main>
 

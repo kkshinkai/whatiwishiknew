@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Mark 的顺序 - What I Wish I Knew</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">What I Wish I Knew</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="mark-的顺序"><a class="header" href="#mark-的顺序">Mark 的顺序</a></h1>
+<p>在 Schema 中定义 Mark (行内样式) 时, 你可以决定 Mark 的顺序. 这个顺序在一些特定场景下非常重要, 但很容易被初学者忽略.</p>
+<pre><code class="language-js">const textSchema = new Schema({
+  nodes: { ... },
+  marks: {
+    highlight: { ... }, // 0
+    em: { ... },        // 1
+    strong: { ... },    // 2
+  }
+});
+</code></pre>
+<h2 id="mark-的顺序决定渲染结果"><a class="header" href="#mark-的顺序决定渲染结果">Mark 的顺序决定渲染结果</a></h2>
+<ol>
+<li>
+<p><strong>ProseMirror 行内元素的数据表示</strong>:</p>
+<p>富文本 “<em>abc <strong>def</strong></em>” 包含斜体和加粗两种样式, 在 Markdown 或 HTML 中, 我们经常会使用嵌套结构来表示它, 即 <code>_abc **def**_</code>. 虽然 <code>_abc_ _**def**_</code> 也能达到同样的视觉效果, 但我们一般不会这样写. 在 ProseMirror 中则恰恰相反, 这段富文本对应的数据结构如下:</p>
+<pre><code class="language-json">[{"type": "text", "text": "abc ", "marks": ["em"]},
+ {"type": "text", "text": "def", "marks": ["em", "strong"]}]
+</code></pre>
+<p>“<em>abc <strong>def</strong></em>” 被拆分成两段表示, “<em>abc </em>” (em) 和 “<em><strong>def</strong></em>” (em, strong). 这是传统富文本 (如 Word, Google Doc) 与标记语言 (如 HTML, Markdown) 在数据表示方法上的区别, 它们的<strong>行内样式不支持真正意义上的嵌套</strong>.</p>
+</li>
+<li>
+<p><strong>HTML 标签的渲染顺序</strong>:</p>
+<p>富文本 “<em><strong>abc</strong></em>” (em, strong) 有如下两种渲染方式:</p>
+<pre><code class="language-html">(1) &lt;em&gt;&lt;strong&gt;abc&lt;/strong&gt;&lt;/em&gt;
+(2) &lt;strong&gt;&lt;em&gt;abc&lt;/em&gt;&lt;/strong&gt;
+</code></pre>
+<p>在 ProseMirror 中, Mark 的顺序越靠后, 渲染时标签就越靠内层. 在这个例子中, Schema 中 <code>strong</code> 在 <code>em</code> 之后定义, 因此 <code>&lt;strong&gt;</code> 标签将嵌套在 <code>&lt;em&gt;</code> 标签内, ProseMirror 的渲染结果是 (1).</p>
+</li>
+<li>
+<p><strong>Mark 的合并</strong>:</p>
+<p>富文本 “<em>abc <strong>def</strong></em>” 有如下两种渲染方式.</p>
+<pre><code class="language-html">(1) &lt;em&gt;abc &lt;strong&gt;def&lt;/strong&gt;&lt;/em&gt;
+(2) &lt;em&gt;abc &lt;/em&gt;&lt;em&gt;&lt;strong&gt;def&lt;/strong&gt;&lt;/em&gt;
+</code></pre>
+<p>ProseMirror 会尽可能地合并相邻的标签, 因此渲染结果是 (1). 这里必须要注意, 假设我们调换 <code>strong</code> 和 <code>em</code> 的顺序, 那么渲染结果将变成:</p>
+<pre><code class="language-html">(3) &lt;em&gt;abc &lt;/em&gt;&lt;strong&gt;&lt;em&gt;def&lt;/em&gt;&lt;/strong&gt;
+</code></pre>
+<p>在这种情况下, <code>&lt;em&gt;</code> 标签被包裹在 <code>&lt;strong&gt;</code> 内, 不再和另一个 <code>&lt;em&gt;</code> 毗邻, ProseMirror <strong>不会</strong>尝试调换顺序来合并它们.</p>
+</li>
+</ol>
+<h2 id="设计-mark-的顺序"><a class="header" href="#设计-mark-的顺序">设计 Mark 的顺序</a></h2>
+<p>对于简单的文字样式 (如斜体, 加粗, 字体颜色等) 来说, Mark 的顺序并不重要, 可以看到, 上一节提到的所有渲染方式都会得到完全相同的视觉效果. 但如果文字样式拥有背景, 边距, 边框, 鼠标悬停效果时, Mark 的顺序就变得至关重要了.</p>
+<p>例如, 假设你在定义 Schema 时, 将边框置于行内代码之后, 你就可能得到一个奇丑无比的效果 – “<span style="border: 2px solid red">abc </span><code style="background-color: gray"><span style="border: 2px solid red">def</span></code><span style="border: 2px solid red"> ghi</span>”, 因为边框被嵌套在了行内代码内, 也许你期望的效果是 “<span style="border: 2px solid red">abc <code style="background-color: gray">def</code> ghi</span>”.</p>
+<p>一般来说, 表示简单文字样式的 Mark 应该放在最后 (而且它们之间的顺序并不重要), 而具有背景, 边框等效果的 Mark 则应该放在靠前的位置, 并根据实际用途决定它们之间的顺序, 尽量减少不合理的嵌套样式出现的概率.</p>
+<p>链接的位置是另一个需要慎重的问题, 你有两种选择:</p>
+<ol>
+<li>
+<p>将链接置于较后的位置, 只前于简单的文字样式.</p>
+<p><span style="border: 2px solid red">abc <a style="color: blue; text-decoration: underline">def</a> ghi</span></p>
+<p>这种方式的缺点在于, 当链接和其他样式同时出现时, 由于链接具有较低优先级, 被包裹于其他样式内部, 因此会被截断成多节, 对光标悬停效果非常不友好. 例如 “<a style="color: blue; text-decoration: underline">abc</a> <span style="border: 2px solid red"><a style="color: blue; text-decoration: underline">def</a></span> <a style="color: blue; text-decoration: underline">ghi</a>”, 实际上是三个链接.</p>
+<p>尽管有这样的缺陷, 但很多富文本编辑器 (如 Notion) 都采取了这种方案. 因为下述的方案缺陷更严重, 且大多数用户也没有在链接内嵌套代码等样式的需求.</p>
+</li>
+<li>
+<p>将链接置于较前的位置.</p>
+<p><a style="color: blue; text-decoration: underline">abc <span style="border: 2px solid red">def</span> ghi</a></p>
+<p>这种方案的缺点在于, 由于链接具有较高的优先级, 它可能经常会包裹其他样式. 如果其他样式有边框或圆角, 会被链接包裹而断成多节, 使得视觉效果不佳, 例如 “<span style="border: 2px solid red">abc </span><a style="color: blue; text-decoration: underline"><span style="border: 2px solid red">def</span></a><span style="border: 2px solid red"> ghi</span>”.</p>
+</li>
+</ol>
+<p>这两种方案都有各自的合理性, 你应该根据实际需求进行选择.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../prosemirror/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../prosemirror/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

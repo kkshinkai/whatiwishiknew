@@ -3,7 +3,7 @@
 在 Schema 中定义 Mark (行内样式) 时, 你可以决定 Mark 的顺序. 这个顺序在一些特定场景下非常重要, 但很容易被初学者忽略.
 
 ```js
-const textSchema = new Schema({
+const schema = new Schema({
   nodes: { ... },
   marks: {
     highlight: { ... }, // 0

@@ -8,7 +8,7 @@ class MDBookSidebarScrollbox extends HTMLElement {
         super();
     }
     connectedCallback() {
-        this.innerHTML = '<ol class="chapter"><li class="chapter-item affix "><a href="introduction.html">我希望当时我知道</a></li><li class="chapter-item affix "><li class="spacer"></li><li class="chapter-item "><a href="prosemirror/index.html">当我学习 ProseMirror 时</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="prosemirror/marks-order.html">Mark 的顺序</a></li></ol></li><li class="chapter-item "><a href="vscode/index.html">当我阅读 VS Code 源码时</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="vscode/dispose-pattern.html">使用 Dispose Pattern 管理资源</a></li></ol></li></ol>';
+        this.innerHTML = '<ol class="chapter"><li class="chapter-item affix "><a href="introduction.html">我希望当时我知道</a></li><li class="chapter-item affix "><li class="spacer"></li><li class="chapter-item "><a href="prosemirror/index.html">当我学习 ProseMirror 时*</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="prosemirror/marks-order.html">Mark 的顺序</a></li></ol></li><li class="chapter-item "><a href="vscode/index.html">当我阅读 VS Code 源码时*</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="vscode/dispose-pattern.html">使用 Dispose Pattern 管理资源*</a></li></ol></li></ol>';
         // Set the current, active page, and reveal it if it's hidden
         let current_page = document.location.href.toString();
         if (current_page.endsWith("/")) {
